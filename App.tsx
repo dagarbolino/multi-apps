@@ -1,20 +1,49 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
-export default function App() {
+import Home from './src/BottomTab/Home';
+import Profile from './src/BottomTab/Profile';
+import Detail from './src/Stack/Detail';
+import Todo from './src/Stack/Todo';
+import Weather from './src/Stack/Weather';
+
+const Tab = createMaterialBottomTabNavigator();
+const Stack = createStackNavigator();
+
+
+function TabNavigator() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={StackNavigator} />
+      <Tab.Screen name="Profile" component={Profile} />
+
+    </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+function StackNavigator () {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="HomeScreen" component={Home} />
+      <Stack.Screen name="Applications" component={Detail} />
+      <Stack.Screen name="Todo" component={Todo} />
+      <Stack.Screen name="Weather" component={Weather} />
+
+    </Stack.Navigator>
+  );
+}
+
+
+
+
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <TabNavigator />
+    </NavigationContainer>
+  );
+}
+
