@@ -1,6 +1,9 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 
+const apiKeyWeather = process.env.REACT_APP_API_KEY_WEATHER;
+
+
 const Weather = () => {
   return (
     <View style={styles.container}>
